@@ -1,12 +1,8 @@
 package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.entities.Movie;
-import com.devsuperior.movieflix.entities.Review;
 
 public class MovieDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -16,25 +12,18 @@ public class MovieDTO implements Serializable{
 	private String subTitle;
 	private Integer year;
 	private String imgUrl;
-	private String synopsis;
-	private List<ReviewDTO> reviews = new ArrayList<>();
-	private Genre genre;
 
 	public MovieDTO() {
 		super();
 	}
 
-	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis,
-			List<ReviewDTO> reviews, Genre genre) {
+	public MovieDTO(Long id, String title, String subTitle, Integer year, String imgUrl) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.subTitle = subTitle;
 		this.year = year;
 		this.imgUrl = imgUrl;
-		this.synopsis = synopsis;
-		this.reviews = reviews;
-		this.genre = genre;
 	}
 
 	public MovieDTO(Movie entity) {
@@ -43,14 +32,12 @@ public class MovieDTO implements Serializable{
 		this.subTitle = entity.getSubTitle();
 		this.year = entity.getYear();
 		this.imgUrl = entity.getImgUrl();
-		this.synopsis = entity.getSynopsis();
-		this.genre = entity.getGenre();
 	}
 
-	public MovieDTO(Movie entity, List<Review> reviews) {
-		this(entity);
-		reviews.forEach(x -> this.reviews.add(new ReviewDTO(x)));
-	}
+//	public MovieDTO(Movie entity, List<Review> reviews) {
+//		this(entity);
+//		reviews.forEach(x -> this.reviews.add(new ReviewDTO(x)));
+//	}
 
 	public Long getId() {
 		return id;
@@ -91,29 +78,4 @@ public class MovieDTO implements Serializable{
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
 	}
-
-	public String getSynopsis() {
-		return synopsis;
-	}
-
-	public void setSynopsis(String synopsis) {
-		this.synopsis = synopsis;
-	}
-
-	public List<ReviewDTO> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<ReviewDTO> reviews) {
-		this.reviews = reviews;
-	}
-
-	public Genre getGenre() {
-		return genre;
-	}
-
-	public void setGenre(Genre genre) {
-		this.genre = genre;
-	}
-
 }
