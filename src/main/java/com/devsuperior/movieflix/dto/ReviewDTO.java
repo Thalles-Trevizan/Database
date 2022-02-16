@@ -13,28 +13,27 @@ public class ReviewDTO implements Serializable{
 	
 	@NotBlank
 	private String text;
-
+	private Long movieId;
 	private UserDTO user;
 
-	private Long movieId;
 
 	public ReviewDTO() {
 		super();
 	}
 
-	public ReviewDTO(Long id, @NotBlank String text, UserDTO user, Long movieId) {
+	public ReviewDTO(Long id, @NotBlank String text, Long movieId, UserDTO user) {
 		super();
 		this.id = id;
 		this.text = text;
-		this.user = user;
 		this.movieId = movieId;
+		this.user = user;
 	}
 
 	public ReviewDTO(Review entity) {
 		id = entity.getId();
 		text = entity.getText();
-		user = new UserDTO(entity.getUser());
 		movieId = entity.getMovie().getId();
+		user = new UserDTO(entity.getUser());
 	}
 
 	public Long getId() {
